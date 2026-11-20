@@ -627,16 +627,32 @@
       submitBtn.textContent = 'ROUTING TO ENQUIRY@IMPROXGROUP.COM...';
 
       try {
-        const response = await fetch('/api/demo-request', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            firstName, lastName, businessEmail, contactNumber, companyName,
-            talkAbout, notes, consent,
-            preferredDate: 'Earliest Available',
-            preferredTime: 'Flexible'
-          })
-        });
+        // Direct routing to customer-contact.php (with fallback to /api/demo-request)
+        let response;
+        try {
+          response = await fetch('customer-contact.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              firstName, lastName, businessEmail, contactNumber, companyName,
+              talkAbout, notes, consent,
+              preferredDate: 'Earliest Available',
+              preferredTime: 'Flexible'
+            })
+          });
+          if (!response.ok) throw new Error('PHP endpoint not responding');
+        } catch (phpErr) {
+          response = await fetch('/api/demo-request', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              firstName, lastName, businessEmail, contactNumber, companyName,
+              talkAbout, notes, consent,
+              preferredDate: 'Earliest Available',
+              preferredTime: 'Flexible'
+            })
+          });
+        }
         const resData = await response.json();
         if (response.ok && resData.success) {
           document.getElementById('standalone-demo-form').classList.add('hidden');
