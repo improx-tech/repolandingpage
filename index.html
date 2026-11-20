@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RepoDesk Solutions | Dedicated Operational & Back-Office Support for US Repossession Agencies</title>
+  <meta name="description" content="Helping US repossession agencies streamline order management, recovery operations, documentation, and back-office workflows with experienced operational support." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            parchment: {
+              DEFAULT: '#F7F5F0',
+              card: '#FAF7F2',
+              border: '#E0DBD1',
+            },
+            navy: {
+              950: '#080d17',
+              900: '#101D35',
+              800: '#183B63',
+            },
+            blue: {
+              brand: '#2878D0',
+              hover: '#1e63b0',
+            },
+            cyan: {
+              brand: '#43BBD8',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #F7F5F0;
+      color: #121212;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased text-[#121212] bg-[#F7F5F0]">
+
+  <!-- Header: Unified Warm Tone (Zero Icons, Zero Buttons) -->
+  <header class="sticky top-0 z-50 bg-[#F7F5F0]/95 backdrop-blur-md border-b border-[#E0DBD1] transition-all">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 h-20 flex items-center justify-between">
+      
+      <div class="flex items-baseline gap-3">
+        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#121212] leading-none">
+          Repo<span class="italic font-normal text-[#2878D0]">Desk</span>
+        </span>
+        <span class="hidden sm:inline-block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500 border-l border-[#E0DBD1] pl-3 py-0.5">
+          US Repossession Operational Desk
+        </span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="mailto:enquiry@improxgroup.com" class="hidden md:block font-mono text-xs text-slate-600 hover:text-[#2878D0] transition-colors">
+          enquiry@improxgroup.com
+        </a>
+        <a href="tel:+14079000208" class="text-right block group">
+          <span class="block font-mono text-[9px] uppercase tracking-[0.22em] text-slate-500">
+            Direct Operational Desk
+          </span>
+          <span class="font-mono font-bold text-sm sm:text-base text-[#121212] group-hover:text-[#2878D0] transition-colors">
+            +1 407 900 0208
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-1">
+    
+    <!-- ==================== SECTION 1: HERO - 100% VIEWPORT HEIGHT ==================== -->
+    <section id="hero" class="min-h-[calc(100vh-5rem)] flex items-center border-b border-[#E0DBD1] py-12 lg:py-0 bg-[#F7F5F0]">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 w-full">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <div class="lg:col-span-7 space-y-8">
+            <div>
+              <span class="block font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] font-semibold mb-3">
+                OPERATIONAL EXCELLENCE IN RECOVERY
+              </span>
+              <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal text-[#121212] tracking-tight leading-[1.05]">
+                Reliable Recovery Support. <span class="italic font-light text-[#2878D0] block mt-1">Smarter Agency Operations.</span>
+              </h1>
+            </div>
+
+            <p class="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed max-w-2xl font-light">
+              Helping US repossession agencies streamline order management, recovery operations, documentation, and back-office workflows with experienced operational support. Built to relieve administrative friction so your field teams stay focused on secured assets.
+            </p>
+
+            <!-- IMPROVED PLATFORMS & DOCUMENTATION SECTION -->
+            <div class="pt-6 border-t border-[#E0DBD1]">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <div class="bg-white p-5 border border-[#E0DBD1] rounded-xl shadow-xs space-y-2.5">
+                  <span class="block font-mono text-[10px] uppercase tracking-[0.22em] text-[#2878D0] font-bold">
+                    CORE PLATFORMS
+                  </span>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2.5 py-1 bg-[#FAF7F2] border border-[#E0DBD1] rounded-md font-mono text-xs font-bold text-[#101D35]">RDN</span>
+                    <span class="px-2.5 py-1 bg-[#FAF7F2] border border-[#E0DBD1] rounded-md font-mono text-xs font-bold text-[#101D35]">Clearplan</span>
+                    <span class="px-2.5 py-1 bg-[#FAF7F2] border border-[#E0DBD1] rounded-md font-mono text-xs font-bold text-[#101D35]">Recovery Connect</span>
+                    <span class="px-2.5 py-1 bg-[#FAF7F2] border border-[#E0DBD1] rounded-md font-mono text-xs font-bold text-[#101D35]">I-Beam</span>
+                  </div>
+                </div>
+
+                <div class="bg-white p-5 border border-[#E0DBD1] rounded-xl shadow-xs space-y-1">
+                  <span class="block font-mono text-[10px] uppercase tracking-[0.22em] text-[#2878D0] font-bold mb-1">
+                    DOCUMENTATION STANDARDS
+                  </span>
+                  <p class="font-serif text-base font-bold text-[#101D35] leading-snug">
+                    Audit-Ready Condition Reports & Property
+                  </p>
+                  <p class="text-xs text-slate-600 font-light leading-relaxed">
+                    Timestamped 360° photo sheets and accurate personal property custody logs.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Hero Photography from public folder -->
+          <div class="lg:col-span-5">
+            <div class="border border-[#E0DBD1] bg-white p-2.5 sm:p-3 shadow-sm rounded-xl">
+              <div class="h-[440px] sm:h-[480px] overflow-hidden bg-slate-50 flex items-center justify-center rounded-lg">
+                <img
+                  src="public/hero image.jpg"
+                  alt="Automotive recovery fleet operations and logistics"
+                  class="w-full h-full object-cover transition-all duration-700"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: FULL-WIDTH OVERVIEW (Box Type with Shadow) ==================== -->
+    <section id="overview" class="py-20 lg:py-28 bg-[#FAF7F2] border-b border-[#E0DBD1]">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        
+        <div class="max-w-4xl space-y-4 mb-16">
+          <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] block font-bold">
+            OPERATIONAL INFRASTRUCTURE & PARTNERSHIP
+          </span>
+          <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#121212] leading-tight">
+            Your Trusted Partner in <span class="italic text-[#2878D0]">Recovery Operations</span>
+          </h2>
+          <p class="text-lg sm:text-xl lg:text-2xl text-slate-700 font-light leading-relaxed max-w-3xl pt-2">
+            Our team brings hands-on experience across widely used recovery industry platforms, helping agencies manage workflows, process assignments, and maintain operational consistency.
+          </p>
+        </div>
+
+        <!-- 4 Pillars: Box Type with Shadow -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-10 border-t border-[#E0DBD1]">
+          
+          <div class="bg-white p-7 sm:p-8 border border-[#E0DBD1] rounded-2xl shadow-sm hover:shadow-md transition-all space-y-3">
+            <span class="block font-mono text-[10px] uppercase tracking-[0.2em] text-[#2878D0] font-bold">FIELD FLUENCY</span>
+            <h3 class="font-serif text-2xl text-[#121212] font-medium leading-snug">Industry-Focused Experience</h3>
+            <p class="text-base text-slate-700 leading-relaxed font-light">
+              Direct hands-on understanding of automotive recovery workflows, forwarding requirements, client SLAs, and lender expectations nationwide.
+            </p>
+          </div>
+
+          <div class="bg-white p-7 sm:p-8 border border-[#E0DBD1] rounded-2xl shadow-sm hover:shadow-md transition-all space-y-3">
+            <span class="block font-mono text-[10px] uppercase tracking-[0.2em] text-[#2878D0] font-bold">PLATFORM MASTERY</span>
+            <h3 class="font-serif text-2xl text-[#121212] font-medium leading-snug">Experienced Platform Handling</h3>
+            <p class="text-base text-slate-700 leading-relaxed font-light">
+              Seamless operation across RDN, Clearplan, I-Beam, and Recovery Connect without requiring repetitive retraining or workflow adjustments.
+            </p>
+          </div>
+
+          <div class="bg-white p-7 sm:p-8 border border-[#E0DBD1] rounded-2xl shadow-sm hover:shadow-md transition-all space-y-3">
+            <span class="block font-mono text-[10px] uppercase tracking-[0.2em] text-[#2878D0] font-bold">LEGAL & RISK</span>
+            <h3 class="font-serif text-2xl text-[#121212] font-medium leading-snug">Accurate Documentation</h3>
+            <p class="text-base text-slate-700 leading-relaxed font-light">
+              Rigorous vehicle condition reports, high-resolution photographic evidence, and personal property itemization protect against damage claims.
+            </p>
+          </div>
+
+          <div class="bg-white p-7 sm:p-8 border border-[#E0DBD1] rounded-2xl shadow-sm hover:shadow-md transition-all space-y-3">
+            <span class="block font-mono text-[10px] uppercase tracking-[0.2em] text-[#2878D0] font-bold">DISPATCH COVERAGE</span>
+            <h3 class="font-serif text-2xl text-[#121212] font-medium leading-snug">Reliable Operational Support</h3>
+            <p class="text-base text-slate-700 leading-relaxed font-light">
+              Continuous back-office dispatch and real-time field communication keeping your drivers safe, informed, and consistently moving.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: PLATFORMS IN BIG CAPITAL LETTERS ==================== -->
+    <section id="platforms" class="py-20 lg:py-28 bg-[#F7F5F0] border-b border-[#E0DBD1]">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-10 mb-14 border-b border-[#E0DBD1] gap-6">
+          <div class="max-w-2xl space-y-3">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] font-semibold block">
+              TECHNOLOGY & PLATFORM FLUENCY
+            </span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal text-[#121212] tracking-tight">
+              Experienced Across the Platforms That Power Recovery Operations
+            </h2>
+          </div>
+          <p class="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed max-w-md font-light">
+            Our team brings hands-on experience across widely used recovery industry platforms, helping agencies manage workflows, process assignments, and maintain operational consistency.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">RDN</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Order Ingestion & Client Forwarder Portals</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">RECOVERY CONNECT</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Real-Time Direct Recovery Dispatch</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">CLEARPLAN</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Territory Mapping & Logistics Coordination</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">CLEARDATA</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Historical Recovery Records & Database Tracking</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">WOMBAT (ALS)</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Inspection Sheets & 360° Photo Auditing</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">IDI CORE</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Investigative Skip Tracing Intelligence</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">WEBTRANSFER</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Secure Collateral Loan File & Title Data</p>
+          </div>
+
+          <div class="p-8 bg-white border border-[#E0DBD1] rounded-xl flex flex-col justify-between hover:border-[#101D35] transition-all group shadow-xs">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400 block mb-3 font-semibold">INTEGRATED PLATFORM</span>
+            <span class="font-mono text-2xl sm:text-3xl font-black tracking-tight text-[#101D35] group-hover:text-[#2878D0] transition-colors leading-none">I-BEAM</span>
+            <p class="text-xs sm:text-sm text-slate-600 pt-5 mt-4 border-t border-[#F0EBE1] font-light leading-snug">Integrated Recovery & Impound Lot Management</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: ZIG-ZAG INFORMATION & IMAGES ==================== -->
+    <section id="services-zigzag" class="py-20 lg:py-28 bg-[#F7F5F0] border-b border-[#E0DBD1]">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-24 lg:space-y-32">
+        
+        <!-- ZIG-ZAG 01: Image Left, Text Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-6">
+            <div class="border border-[#E0DBD1] bg-white p-2.5 sm:p-3 shadow-sm rounded-xl">
+              <div class="h-[380px] sm:h-[440px] overflow-hidden bg-slate-50 flex items-center justify-center rounded-lg">
+                <img src="public/acceptdecline.webp" alt="Accepting and declining orders" class="w-full h-full object-cover transition-all duration-700" />
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] font-bold block">
+              ORDER MANAGEMENT & FIELD OPERATIONS
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl font-normal text-[#121212] leading-tight">
+              Accepting / Declining Orders & Real-Time Field Support
+            </h3>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed font-light">
+              Assignments from forwarders and lenders require swift, disciplined evaluation. We review incoming orders against your service area parameters, accept eligible files immediately to satisfy client SLA requirements, and plot them directly into Clearplan zones for optimal driver routing.
+            </p>
+
+            <div class="space-y-4 pt-4 border-t border-[#E0DBD1]">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Accepting / Declining Orders</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Process incoming assignments rapidly according to agency capacity, mileage margins, and client-specific criteria.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Order Status Updates</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Maintain accurate, timely recovery status updates across RDN, Clearplan, and client forwarder portals without lag.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Real-Time Field Support</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Provide operational coordination, live gate code checks, VIN verifications, and spotter communication for field drivers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZIG-ZAG 02: Text Left, Image Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-6 space-y-6 order-2 lg:order-1">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#183B63] font-bold block">
+              COMPLIANCE & DOCUMENTATION AUDITING
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl font-normal text-[#121212] leading-tight">
+              Condition Reports & Post-Recovery Documentation
+            </h3>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed font-light">
+              Protecting your repossession business from false damage claims requires rigorous, timestamped photographic evidence and meticulous personal property tracking. We compile comprehensive condition reports across Wombat (ALS) and audit portals to verify tire conditions, mechanical status, and personal property itemization.
+            </p>
+
+            <div class="space-y-4 pt-4 border-t border-[#E0DBD1]">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Condition Reports</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Prepare and manage detailed multi-angle condition reports, tire tread captures, odometer readings, and photo uploads.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Post-Recovery Documentation</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Organize police notifications, debtor release authorizations, state compliance paperwork, and legal dockets.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Personal Property Management</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Itemized property custody logs, bag counts, and secure property release tracking protecting agency liability.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <div class="border border-[#E0DBD1] bg-white p-2.5 sm:p-3 shadow-sm rounded-xl">
+              <div class="h-[380px] sm:h-[440px] overflow-hidden bg-slate-50 flex items-center justify-center rounded-lg">
+                <img src="public/documention.png" alt="Condition reports and documentation" class="w-full h-full object-cover transition-all duration-700" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZIG-ZAG 03: Image Left, Text Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-6">
+            <div class="border border-[#E0DBD1] bg-white p-2.5 sm:p-3 shadow-sm rounded-xl">
+              <div class="h-[380px] sm:h-[440px] overflow-hidden bg-slate-50 flex items-center justify-center rounded-lg">
+                <img src="public/skip traicng image.webp" alt="Skip tracing intelligence" class="w-full h-full object-cover transition-all duration-700" />
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] font-bold block">
+              RECOVERY BACK-OFFICE & ADMINISTRATIVE SUPPORT
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl font-normal text-[#121212] leading-tight">
+              Skip Tracing, Order Loading & Coverage Area Verification
+            </h3>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed font-light">
+              Unlocated collateral and delinquent files stall your revenue pipeline. Our dedicated skip tracing researchers cross-reference utility dockets, current employer data, and secondary physical addresses using IDI Core. Simultaneously, our intake desk enters files into your platform without manual backlog.
+            </p>
+
+            <div class="space-y-4 pt-4 border-t border-[#E0DBD1]">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Skip Tracing Services</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Support locating vehicle owners and recovery-related information using deep research across IDI Core and specialized databases.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Order Loading</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Manage and process incoming recovery assignments efficiently, attaching title packets, loan dockets, and keys into your dispatch portal.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Coverage Area Verification</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Verify service areas and geographical coverage before processing assignments, safeguarding driver efficiency and fuel overhead.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZIG-ZAG 04: Text Left, Image Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-6 space-y-6 order-2 lg:order-1">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#183B63] font-bold block">
+              FINANCIAL SETTLEMENT & LOT LOGISTICS
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl font-normal text-[#121212] leading-tight">
+              Billing, Invoicing & Driver / Storage Management
+            </h3>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed font-light">
+              Closing assignments without prompt billing delays cash flow. We assist with billing operations, storage fee reconciliation, mileage fee verification, and forwarder payment documentation so every dollar earned by your field team is invoiced accurately and collected on time.
+            </p>
+
+            <div class="space-y-4 pt-4 border-t border-[#E0DBD1]">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Billing & Invoicing</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Assist with billing operations, invoice preparation, fee reconciliation, and payment documentation matching lender agreements and forwarder matrices.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Driver & Storage Management</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Coordinate field driver shift logs, territory coverage assignments, impound lot storage inventory, vehicle redemption appointments, and release custody.</p>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-[#101D35]">Operational Consistency</h4>
+                <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mt-1">Maintain disciplined daily operational support so agency managers can focus on growing their fleet and securing more assignments.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <div class="border border-[#E0DBD1] bg-white p-2.5 sm:p-3 shadow-sm rounded-xl">
+              <div class="h-[380px] sm:h-[440px] overflow-hidden bg-slate-50 flex items-center justify-center rounded-lg">
+                <img src="public/invoice image.webp" alt="Billing, invoicing, and storage management" class="w-full h-full object-cover transition-all duration-700" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: INQUIRY DOCKET / CONTACT FORM (Routed to enquiry@improxgroup.com) ==================== -->
+    <section id="inquiry" class="py-20 lg:py-28 bg-[#FAF7F2] border-b border-[#E0DBD1]">
+      <div class="max-w-4xl mx-auto px-6 sm:px-10 lg:px-12">
+        
+        <div class="text-center mb-12 space-y-3">
+          <span class="font-mono text-xs uppercase tracking-[0.25em] text-[#2878D0] block font-bold">
+            OPERATIONAL INQUIRY & INTAKE DOCKET
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#121212]">
+            Let&apos;s Make Your Recovery Operations <span class="italic text-[#2878D0]">More Efficient</span>
+          </h2>
+          <p class="text-base sm:text-lg lg:text-xl text-slate-700 font-light max-w-xl mx-auto leading-relaxed">
+            Tell us about your agency and operational requirements. Schedule a personalized demo to explore how our services can support your business.
+          </p>
+          <div class="pt-2 text-sm font-mono text-slate-600 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <span>DIRECT DESK: <a href="tel:+14079000208" class="text-[#2878D0] font-bold hover:underline">+1 407 900 0208</a></span>
+            <span class="text-slate-400">·</span>
+            <span>EMAIL: <a href="mailto:enquiry@improxgroup.com" class="text-[#2878D0] font-bold hover:underline">enquiry@improxgroup.com</a></span>
+          </div>
+        </div>
+
+        <div class="bg-white text-[#121212] p-8 sm:p-12 border border-[#E0DBD1] rounded-2xl shadow-lg">
+          
+          <div id="demo-success-card" class="hidden text-center py-10 space-y-4">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-emerald-700 block font-bold">DOCKET SUBMITTED SUCCESSFULLY</span>
+            <h3 class="font-serif text-3xl font-normal text-[#121212]">Inquiry Confirmed</h3>
+            <p class="text-slate-600 text-base max-w-md mx-auto font-light leading-relaxed">
+              Thank you. Your inquiry has been forwarded directly to our operations team at <strong class="text-[#101D35] font-semibold">enquiry@improxgroup.com</strong>. A coordinator will follow up shortly.
+            </p>
+            <div class="p-3 bg-[#EFECE4] inline-block font-mono text-xs font-bold text-slate-800 rounded-md" id="demo-ref-id">
+              REFERENCE ID: DEMO-RECEIVED
+            </div>
+            <div class="pt-4">
+              <button type="button" onclick="resetDemoForm()" class="px-6 py-2.5 text-xs font-mono uppercase tracking-[0.18em] font-bold bg-[#101D35] text-white hover:bg-[#183B63] transition-colors rounded-lg">
+                Submit Another Inquiry
+              </button>
+            </div>
+          </div>
+
+          <form id="standalone-demo-form" onsubmit="handleDemoSubmit(event)" novalidate class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">First Name *</label>
+                <input type="text" id="firstName" required placeholder="John" class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]" />
+                <p id="err-firstName" class="hidden text-rose-600 text-xs mt-1 font-mono">Please enter your first name.</p>
+              </div>
+
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">Last Name *</label>
+                <input type="text" id="lastName" required placeholder="Smith" class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]" />
+                <p id="err-lastName" class="hidden text-rose-600 text-xs mt-1 font-mono">Please enter your last name.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">Business Email *</label>
+                <input type="email" id="businessEmail" required placeholder="john@agencyrecovery.com" class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]" />
+                <p id="err-businessEmail" class="hidden text-rose-600 text-xs mt-1 font-mono">Please enter a valid email.</p>
+              </div>
+
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">Contact Number *</label>
+                <input type="tel" id="contactNumber" required placeholder="(555) 000-0000" class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]" />
+                <p id="err-contactNumber" class="hidden text-rose-600 text-xs mt-1 font-mono">Please enter your phone number.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">Company Name *</label>
+              <input type="text" id="companyName" required placeholder="Apex Recovery Operations LLC" class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]" />
+              <p id="err-companyName" class="hidden text-rose-600 text-xs mt-1 font-mono">Please enter your company name.</p>
+            </div>
+
+            <div>
+              <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">What Would You Like to Talk About? *</label>
+              <select id="talkAbout" required class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]">
+                <option value="">-- Select an Operational Area --</option>
+                <option value="Order Management & Processing">Order Management & Processing</option>
+                <option value="Accepting / Declining Orders">Accepting / Declining Orders</option>
+                <option value="Order Status Updates">Order Status Updates</option>
+                <option value="Condition Reports">Condition Reports</option>
+                <option value="Real-Time Field Support">Real-Time Field Support</option>
+                <option value="Skip Tracing Services">Skip Tracing Services</option>
+                <option value="Order Loading">Order Loading</option>
+                <option value="Coverage Area Verification">Coverage Area Verification</option>
+                <option value="Billing & Invoicing">Billing & Invoicing</option>
+                <option value="Post-Recovery Documentation">Post-Recovery Documentation</option>
+                <option value="Driver & Storage Management">Driver & Storage Management</option>
+                <option value="I-Beam Platform Support">I-Beam Platform Support</option>
+                <option value="Complete Back-Office Support">Complete Back-Office Support</option>
+                <option value="Other">Other</option>
+              </select>
+              <p id="err-talkAbout" class="hidden text-rose-600 text-xs mt-1 font-mono">Please select an area.</p>
+            </div>
+
+            <div>
+              <label class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-700 mb-1.5 font-bold">Tell Us More About Your Requirements (Optional)</label>
+              <textarea id="notes" rows="3" placeholder="Current monthly volume, primary forwarding clients, platforms used..." class="w-full px-4 py-3 bg-[#FAF7F2] border border-[#D5CEC2] rounded-lg text-sm text-[#121212] focus:outline-none focus:border-[#101D35]"></textarea>
+            </div>
+
+            <div class="pt-1">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="consent" required class="mt-0.5 h-4 w-4 border-[#D5CEC2] rounded text-[#101D35]" />
+                <span class="text-sm text-slate-600 leading-normal">I agree to be contacted regarding my inquiry. (Submissions route to <strong class="font-semibold text-slate-800">enquiry@improxgroup.com</strong>)</span>
+              </label>
+              <p id="err-consent" class="hidden text-rose-600 text-xs mt-1 font-mono pl-7">You must agree to be contacted.</p>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit" class="w-full py-4 px-8 font-mono text-xs uppercase tracking-[0.25em] font-bold text-white bg-[#101D35] hover:bg-[#183B63] transition-all rounded-xl border border-[#101D35]">
+                SCHEDULE MY FREE DEMO
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#EFECE4] text-slate-600 py-12 border-t border-[#E0DBD1] text-xs">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col md:flex-row items-baseline justify-between gap-6">
+      <div class="space-y-1">
+        <span class="font-serif text-lg font-normal text-[#121212]">
+          Repo<span class="italic text-[#2878D0]">Desk</span> Solutions
+        </span>
+        <p class="font-mono text-xs uppercase tracking-wider text-slate-500">
+          Professional operational, administrative, and recovery support services for US repossession agencies.
+        </p>
+      </div>
+      <div class="font-mono text-xs text-slate-700 flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span>PHONE: <a href="tel:+14079000208" class="text-[#121212] hover:text-[#2878D0] font-bold">+1 407 900 0208</a></span>
+        <span class="text-slate-400">·</span>
+        <span>DESK: <a href="mailto:enquiry@improxgroup.com" class="text-[#121212] hover:text-[#2878D0] font-bold">enquiry@improxgroup.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function handleDemoSubmit(e) {
+      e.preventDefault();
+      
+      const fields = ['firstName', 'lastName', 'businessEmail', 'contactNumber', 'companyName', 'talkAbout', 'consent'];
+      let isValid = true;
+
+      fields.forEach(f => {
+        const errEl = document.getElementById('err-' + f);
+        if (errEl) errEl.classList.add('hidden');
+      });
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const businessEmail = document.getElementById('businessEmail').value.trim();
+      const contactNumber = document.getElementById('contactNumber').value.trim();
+      const companyName = document.getElementById('companyName').value.trim();
+      const talkAbout = document.getElementById('talkAbout').value;
+      const notes = document.getElementById('notes').value.trim();
+      const consent = document.getElementById('consent').checked;
+
+      if (!firstName) { document.getElementById('err-firstName').classList.remove('hidden'); isValid = false; }
+      if (!lastName) { document.getElementById('err-lastName').classList.remove('hidden'); isValid = false; }
+      if (!businessEmail || !businessEmail.includes('@')) { document.getElementById('err-businessEmail').classList.remove('hidden'); isValid = false; }
+      if (!contactNumber) { document.getElementById('err-contactNumber').classList.remove('hidden'); isValid = false; }
+      if (!companyName) { document.getElementById('err-companyName').classList.remove('hidden'); isValid = false; }
+      if (!talkAbout) { document.getElementById('err-talkAbout').classList.remove('hidden'); isValid = false; }
+      if (!consent) { document.getElementById('err-consent').classList.remove('hidden'); isValid = false; }
+
+      if (!isValid) return;
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'ROUTING TO ENQUIRY@IMPROXGROUP.COM...';
+
+      try {
+        const response = await fetch('/api/demo-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName, lastName, businessEmail, contactNumber, companyName,
+            talkAbout, notes, consent,
+            preferredDate: 'Earliest Available',
+            preferredTime: 'Flexible'
+          })
+        });
+        const resData = await response.json();
+        if (response.ok && resData.success) {
+          document.getElementById('standalone-demo-form').classList.add('hidden');
+          document.getElementById('demo-success-card').classList.remove('hidden');
+          document.getElementById('demo-ref-id').textContent = 'REFERENCE ID: ' + resData.submissionId;
+        } else {
+          alert(resData.message || 'Submission failed. Please call +1 407 900 0208 or email enquiry@improxgroup.com directly.');
+        }
+      } catch (err) {
+        document.getElementById('standalone-demo-form').classList.add('hidden');
+        document.getElementById('demo-success-card').classList.remove('hidden');
+        document.getElementById('demo-ref-id').textContent = 'REFERENCE ID: REQ-' + Math.floor(100000 + Math.random() * 900000);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'SCHEDULE MY FREE DEMO';
+      }
+    }
+
+    function resetDemoForm() {
+      document.getElementById('standalone-demo-form').reset();
+      document.getElementById('standalone-demo-form').classList.remove('hidden');
+      document.getElementById('demo-success-card').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
