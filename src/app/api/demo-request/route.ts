@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
       consent
     } = body;
 
-    // Strict validation
+    // Validation
     const errors: Record<string, string> = {};
 
     if (!firstName || typeof firstName !== "string" || firstName.trim().length < 2) {
@@ -96,35 +97,121 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Generate submission record
     const submissionId = `DEMO-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
-    const submissionRecord = {
-      id: submissionId,
-      createdAt: new Date().toISOString(),
-      recipientEmail: RECIPIENT_EMAIL,
-      status: "ROUTED_TO_IMPROX_GROUP",
-      data: {
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
-        businessEmail: businessEmail.trim().toLowerCase(),
-        contactNumber: contactNumber.trim(),
-        companyName: companyName.trim(),
-        talkAbout,
-        preferredDate: preferredDate || "Earliest Available",
-        preferredTime: preferredTime || "Flexible",
-        notes: notes ? notes.trim() : "",
-        consent: true
-      },
-      emailNotification: {
-        to: RECIPIENT_EMAIL,
-        subject: `[New RepoDesk Lead] Operational Inquiry from ${companyName.trim()}`,
-        sender: "RepoDesk Operations <enquiry@improxgroup.com>",
-        timestamp: new Date().toISOString(),
-        deliveryStatus: "QUEUED_FOR_DISPATCH"
-      }
-    };
 
-    // Persist to local JSON data store
+    // Attempt actual email dispatch via SMTP if configured
+    const smtpUser = process.env.SMTP_USER || "enquiry@improxgroup.com";
+    const smtpPass = process.env.SMTP_PASS; // Requires Google App Password or SMTP password
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+    const smtpPort = Number(process.env.SMTP_PORT) || 465;
+
+    let emailSent = false;
+    let emailError: string | null = null;
+
+    if (smtpPass) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass
+          }
+        });
+
+        const htmlEmail = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #E0DBD1; background-color: #F7F5F0; padding: 24px;">
+            <div style="border-bottom: 2px solid #101D35; padding-bottom: 12px; margin-bottom: 20px;">
+              <h2 style="color: #101D35; margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 1px;">
+                New Operational Inquiry
+              </h2>
+              <p style="color: #64748B; font-size: 13px; margin: 4px 0 0 0;">
+                Docket ID: <strong>${submissionId}</strong> · Routed to ${RECIPIENT_EMAIL}
+              </p>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; background: #FFFFFF; border: 1px solid #E0DBD1;">
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; width: 35%; color: #475569;">Agency / Company</td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; color: #101D35; font-size: 16px;">${companyName.trim()}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; color: #475569;">Contact Name</td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; color: #101D35;">${firstName.trim()} ${lastName.trim()}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; color: #475569;">Business Email</td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4;"><a href="mailto:${businessEmail.trim()}" style="color: #2878D0; text-decoration: none; font-weight: bold;">${businessEmail.trim()}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; color: #475569;">Phone Number</td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4;"><a href="tel:${contactNumber.trim()}" style="color: #101D35; text-decoration: none; font-weight: bold;">${contactNumber.trim()}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; font-weight: bold; color: #475569;">Requested Discussion</td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid #EFECE4; color: #101D35; font-weight: 600;">${talkAbout}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; font-weight: bold; color: #475569;">Operational Notes</td>
+                <td style="padding: 12px 16px; color: #334155; white-space: pre-wrap;">${notes && notes.trim() ? notes.trim() : "None provided"}</td>
+              </tr>
+            </table>
+
+            <div style="margin-top: 24px; padding: 12px; background: #EFECE4; font-size: 11px; color: #64748B; text-align: center;">
+              This notification was generated from the RepoDesk Solutions landing page and routed directly to ${RECIPIENT_EMAIL}.
+            </div>
+          </div>
+        `;
+
+        await transporter.sendMail({
+          from: `"RepoDesk Dispatch" <${smtpUser}>`,
+          to: RECIPIENT_EMAIL,
+          replyTo: businessEmail.trim(),
+          subject: `[New Lead] ${companyName.trim()} — ${talkAbout}`,
+          text: `Agency: ${companyName}\nName: ${firstName} ${lastName}\nEmail: ${businessEmail}\nPhone: ${contactNumber}\nTopic: ${talkAbout}\nNotes: ${notes || "None"}`,
+          html: htmlEmail
+        });
+
+        emailSent = true;
+      } catch (err: unknown) {
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        console.error("Failed to send SMTP email:", errorMsg);
+        emailError = errorMsg;
+      }
+    }
+
+    // Also support Web3Forms forwarding as an alternative webhook/relay if configured
+    const web3Key = process.env.WEB3FORMS_ACCESS_KEY;
+    if (web3Key && !emailSent) {
+      try {
+        const web3Res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: web3Key,
+            subject: `[New Lead] ${companyName.trim()} — ${talkAbout}`,
+            from_name: "RepoDesk Dispatch",
+            to_email: RECIPIENT_EMAIL,
+            replyto: businessEmail.trim(),
+            Agency: companyName.trim(),
+            Contact: `${firstName.trim()} ${lastName.trim()}`,
+            Email: businessEmail.trim(),
+            Phone: contactNumber.trim(),
+            Topic: talkAbout,
+            Notes: notes && notes.trim() ? notes.trim() : "None provided",
+            Docket_ID: submissionId
+          })
+        });
+        if (web3Res.ok) {
+          emailSent = true;
+        }
+      } catch (wErr) {
+        console.error("Web3Forms forward failed:", wErr);
+      }
+    }
+
+    // Persist to local JSON record
     try {
       const storageDir = path.join(process.cwd(), "src", "data", "submissions");
       if (!fs.existsSync(storageDir)) {
@@ -145,14 +232,29 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      existingRecords.push(submissionRecord);
+      existingRecords.push({
+        id: submissionId,
+        createdAt: new Date().toISOString(),
+        recipientEmail: RECIPIENT_EMAIL,
+        emailSent,
+        emailError,
+        data: {
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          businessEmail: businessEmail.trim().toLowerCase(),
+          contactNumber: contactNumber.trim(),
+          companyName: companyName.trim(),
+          talkAbout,
+          preferredDate: preferredDate || "Earliest Available",
+          preferredTime: preferredTime || "Flexible",
+          notes: notes ? notes.trim() : "",
+          consent: true
+        }
+      });
       fs.writeFileSync(filePath, JSON.stringify(existingRecords, null, 2), "utf-8");
     } catch (fsError) {
-      console.error("Local storage error (non-fatal):", fsError);
+      console.error("Local storage error:", fsError);
     }
-
-    // Log operational lead notice
-    console.log(`[RepoDesk Lead Routed -> ${RECIPIENT_EMAIL}] ID: ${submissionId} | Agency: ${companyName} | Contact: ${firstName} ${lastName} (${businessEmail}) | Topic: ${talkAbout}`);
 
     return NextResponse.json(
       {
@@ -160,6 +262,7 @@ export async function POST(req: NextRequest) {
         message: `Your inquiry has been successfully routed to our operational team at ${RECIPIENT_EMAIL}.`,
         submissionId,
         recipientEmail: RECIPIENT_EMAIL,
+        emailSent,
         details: {
           agencyName: companyName.trim(),
           contactPerson: `${firstName.trim()} ${lastName.trim()}`,
