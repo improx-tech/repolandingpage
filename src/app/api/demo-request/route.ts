@@ -3,7 +3,9 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 
-const RECIPIENT_EMAIL = "enquiry@improxgroup.com";
+const PRIMARY_EMAIL = "enquiry@improxgroup.com";
+const SECONDARY_EMAIL = "rohanmate2810@gmail.com";
+const RECIPIENT_EMAILS = [PRIMARY_EMAIL, SECONDARY_EMAIL];
 
 const ALLOWED_TOPICS = [
   "Order Management & Processing",
@@ -99,14 +101,50 @@ export async function POST(req: NextRequest) {
 
     const submissionId = `DEMO-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
-    // Attempt actual email dispatch via SMTP if configured
-    const smtpUser = process.env.SMTP_USER || "enquiry@improxgroup.com";
-    const smtpPass = process.env.SMTP_PASS; // Requires Google App Password or SMTP password
-    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-    const smtpPort = Number(process.env.SMTP_PORT) || 465;
-
     let emailSent = false;
     let emailError: string | null = null;
+
+    // 1. Dispatch through FormSubmit Relay (delivers directly to enquiry@improxgroup.com + rohanmate2810@gmail.com)
+    try {
+      const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${PRIMARY_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Referer": "https://improxgroup.com",
+          "Origin": "https://improxgroup.com"
+        },
+        body: JSON.stringify({
+          _subject: `[New RepoDesk Lead] ${companyName.trim()} — ${talkAbout}`,
+          _cc: SECONDARY_EMAIL,
+          _replyto: businessEmail.trim(),
+          _template: "table",
+          _captcha: "false",
+          "Agency / Company": companyName.trim(),
+          "Contact Person": `${firstName.trim()} ${lastName.trim()}`,
+          "Business Email": businessEmail.trim(),
+          "Contact Phone": contactNumber.trim(),
+          "Requested Focus": talkAbout,
+          "Operational Notes": notes && notes.trim() ? notes.trim() : "None provided",
+          "Docket Reference ID": submissionId,
+          "Dispatched To": `${PRIMARY_EMAIL}, ${SECONDARY_EMAIL}`,
+          "Timestamp": new Date().toISOString()
+        })
+      });
+
+      const fsData = await formSubmitRes.json().catch(() => null);
+      if (fsData && (fsData.success === "true" || fsData.success === true)) {
+        emailSent = true;
+      }
+    } catch (fsErr) {
+      console.error("FormSubmit relay error:", fsErr);
+    }
+
+    // 2. Dispatch via SMTP if configured in environment
+    const smtpUser = process.env.SMTP_USER || PRIMARY_EMAIL;
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+    const smtpPort = Number(process.env.SMTP_PORT) || 465;
 
     if (smtpPass) {
       try {
@@ -127,7 +165,7 @@ export async function POST(req: NextRequest) {
                 New Operational Inquiry
               </h2>
               <p style="color: #64748B; font-size: 13px; margin: 4px 0 0 0;">
-                Docket ID: <strong>${submissionId}</strong> · Routed to ${RECIPIENT_EMAIL}
+                Docket ID: <strong>${submissionId}</strong> · Routed to ${PRIMARY_EMAIL} &amp; ${SECONDARY_EMAIL}
               </p>
             </div>
             
@@ -159,14 +197,14 @@ export async function POST(req: NextRequest) {
             </table>
 
             <div style="margin-top: 24px; padding: 12px; background: #EFECE4; font-size: 11px; color: #64748B; text-align: center;">
-              This notification was generated from the RepoDesk Solutions landing page and routed directly to ${RECIPIENT_EMAIL}.
+              This notification was generated from RepoDesk Solutions and routed to ${PRIMARY_EMAIL} and ${SECONDARY_EMAIL}.
             </div>
           </div>
         `;
 
         await transporter.sendMail({
           from: `"RepoDesk Dispatch" <${smtpUser}>`,
-          to: RECIPIENT_EMAIL,
+          to: RECIPIENT_EMAILS,
           replyTo: businessEmail.trim(),
           subject: `[New Lead] ${companyName.trim()} — ${talkAbout}`,
           text: `Agency: ${companyName}\nName: ${firstName} ${lastName}\nEmail: ${businessEmail}\nPhone: ${contactNumber}\nTopic: ${talkAbout}\nNotes: ${notes || "None"}`,
@@ -178,36 +216,6 @@ export async function POST(req: NextRequest) {
         const errorMsg = err instanceof Error ? err.message : String(err);
         console.error("Failed to send SMTP email:", errorMsg);
         emailError = errorMsg;
-      }
-    }
-
-    // Also support Web3Forms forwarding as an alternative webhook/relay if configured
-    const web3Key = process.env.WEB3FORMS_ACCESS_KEY;
-    if (web3Key && !emailSent) {
-      try {
-        const web3Res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            access_key: web3Key,
-            subject: `[New Lead] ${companyName.trim()} — ${talkAbout}`,
-            from_name: "RepoDesk Dispatch",
-            to_email: RECIPIENT_EMAIL,
-            replyto: businessEmail.trim(),
-            Agency: companyName.trim(),
-            Contact: `${firstName.trim()} ${lastName.trim()}`,
-            Email: businessEmail.trim(),
-            Phone: contactNumber.trim(),
-            Topic: talkAbout,
-            Notes: notes && notes.trim() ? notes.trim() : "None provided",
-            Docket_ID: submissionId
-          })
-        });
-        if (web3Res.ok) {
-          emailSent = true;
-        }
-      } catch (wErr) {
-        console.error("Web3Forms forward failed:", wErr);
       }
     }
 
@@ -235,7 +243,7 @@ export async function POST(req: NextRequest) {
       existingRecords.push({
         id: submissionId,
         createdAt: new Date().toISOString(),
-        recipientEmail: RECIPIENT_EMAIL,
+        recipients: RECIPIENT_EMAILS,
         emailSent,
         emailError,
         data: {
@@ -256,19 +264,21 @@ export async function POST(req: NextRequest) {
       console.error("Local storage error:", fsError);
     }
 
+    console.log(`[RepoDesk Lead -> ${PRIMARY_EMAIL} & ${SECONDARY_EMAIL}] ID: ${submissionId} | Agency: ${companyName}`);
+
     return NextResponse.json(
       {
         success: true,
-        message: `Your inquiry has been successfully routed to our operational team at ${RECIPIENT_EMAIL}.`,
+        message: `Your inquiry has been successfully routed to ${PRIMARY_EMAIL} and ${SECONDARY_EMAIL}.`,
         submissionId,
-        recipientEmail: RECIPIENT_EMAIL,
+        recipientEmails: RECIPIENT_EMAILS,
         emailSent,
         details: {
           agencyName: companyName.trim(),
           contactPerson: `${firstName.trim()} ${lastName.trim()}`,
           businessEmail: businessEmail.trim().toLowerCase(),
           topic: talkAbout,
-          routedTo: RECIPIENT_EMAIL,
+          routedTo: `${PRIMARY_EMAIL}, ${SECONDARY_EMAIL}`,
           receivedAt: new Date().toLocaleDateString("en-US", {
             weekday: "long",
             year: "numeric",

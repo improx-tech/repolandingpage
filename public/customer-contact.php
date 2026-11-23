@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Recipient Email
-$recipientEmail = 'enquiry@improxgroup.com';
+// Recipient Emails (Sends to both enquiry@improxgroup.com and rohanmate2810@gmail.com)
+$recipientEmail = 'enquiry@improxgroup.com, rohanmate2810@gmail.com';
 
 // Read raw JSON body if available, otherwise check $_POST
 $rawInput = file_get_contents('php://input');
